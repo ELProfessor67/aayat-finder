@@ -17,6 +17,7 @@
 		@include common_font($font_weight : 700);
 		position: relative;
 		padding-bottom: 1rem;
+		margin-bottom: 2rem;
 		&::before
 		{
 			content: '';
