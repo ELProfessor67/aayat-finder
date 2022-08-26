@@ -1,0 +1,20 @@
+.HeroSection
+{
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to right , rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)),url('../public/quran.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  &::before
+  {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    clip-path: polygon(0 100%, 100% 80%, 100% 100%, 0% 100%);  }
+}

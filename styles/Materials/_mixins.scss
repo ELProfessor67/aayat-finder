@@ -1,0 +1,16 @@
+@mixin flex($dec: row, $justify: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+  flex-direction:  $dec;
+}
+
+@mixin arbic_font($font_weight: 400){
+  font-family: 'Scheherazade New', serif;
+  font-weight: $font_weight;
+}
+
+@mixin common_font($font_weight: 400){
+  font-family: 'KoHo', sans-serif;
+  font-weight: $font_weight;
+}

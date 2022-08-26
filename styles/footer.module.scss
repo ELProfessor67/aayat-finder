@@ -1,0 +1,152 @@
+@use 'Materials/colors' as *;
+@use 'Materials/mixins' as *;
+
+
+.footer_section
+{
+	background: rgb(0 10 45);
+  	transition: all .7s linear;
+  	padding: 3rem;
+  	padding-bottom: 0;
+  	.container
+  	{
+  		display: grid;
+  		grid-template-columns: repeat(4, 1fr);
+  		gap: 9rem;
+
+  		h3
+	  	{
+	  		color: #fff;
+	  		margin-bottom: 3rem;
+	  		font-size: 1.8rem;
+	  		@include common_font;
+	  		// text-align: center;
+	  	}
+	  	.f_logo
+	  	{
+	  		@include flex;
+	  	}
+
+	  	.f_address address
+	  	{
+	  		@include flex($dec : column);
+	  		align-items: flex-start !important;
+	  		gap: 1rem;
+	  		div p
+	  		{
+	  			@include flex;
+	  			gap: .4rem;
+	  			span 
+	  			{
+	  				display: grid;
+	  				place-item: center;
+	  				color: #adadad;
+	  			}
+	  			a
+	  			{
+	  				color: #adadad;
+	  				font-size: 1.5rem;
+			  		@include common_font;
+	  			}
+	 	  	}
+	  	}
+
+
+	  	:is(.f_link,.f_serive){
+		  	ul
+	  		{
+			  display: flex;
+			  flex-direction: column;
+			  justify-content: center;
+			  gap: 1rem;
+			  li
+			  	{
+			  		list-style: none;
+			  		@include flex($justify : flex-start);
+			  		gap : .4rem;
+			  		span
+			  		{
+			  			color : #adadad;
+			  			display: grid;
+			  			place-item: center;
+			  			// padding: 1rem;
+			  		}
+			  		a
+			  		{
+			  			color: #adadad;
+			  			font-size: 1.5rem;
+			  			@include common_font;
+			  		}
+			  	}
+			}
+	  }
+	}
+
+	.f_credits p
+	{
+	  	text-align: center;
+	    color: #adadad;
+	    padding: 2rem;
+	    margin-top: 3rem;
+	    font-size: 1.5rem;
+	    @include common_font;
+	}
+}
+
+
+
+
+@media (max-width: 1120px){
+	.container
+	{
+		gap: 5rem !important;
+	}
+}
+
+@media (max-width: 1060px){
+	.container
+	{
+		gap: 4rem !important;
+	}
+}
+
+
+@media (max-width: 900px){
+	.container
+	{
+		grid-template-columns: repeat(2, 1fr) !important;
+		gap: 6rem !important;
+	}
+
+	// :is(.f_link,.f_serive,.f_address){
+	// 	@include flex($dec : column);
+	// }
+
+}
+
+@media (max-width: 400px){
+	.f_logo
+	{
+		grid-column-start: -1;
+		grid-column-end: 1;
+	}
+	.container
+	{
+		column-gap: 3rem !important;
+		row-gap: 6rem;
+	}
+}
+
+@media (max-width: 266px){
+	.container
+	{
+		column-gap: 1rem !important;	}
+}
+
+@media (max-width: 250px){
+
+	.container
+	{
+		grid-template-columns: repeat(1, 1fr) !important;
+	}	
+}

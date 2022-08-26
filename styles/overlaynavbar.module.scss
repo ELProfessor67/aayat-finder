@@ -1,0 +1,78 @@
+@use 'Materials/colors' as *;
+@use 'Materials/mixins' as *;
+
+
+.header{
+	width: 100%;
+	padding: 1rem 2rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	 .toggler
+		{
+			width: 6rem !important;
+    		height: 5rem !important;
+			position: relative;
+			z-index: 1000;
+			&:hover > path
+			{
+				transition : $transition + .2;
+				stroke: $hoverColor;
+			}
+		}
+	.navbar
+	{
+		position: absolute;
+		top: 0;
+		left: -100%;
+		z-index: 500;
+		width: 100%;
+		height: 100vh;
+		background: $navColor;
+		padding: 3rem;
+		@include flex;
+		justify-content: center !important;
+		gap : 6rem;
+		transition : $transition + .2;
+
+		ul
+		{
+			@include flex($justify : center);
+			gap : 7rem;
+			list-style: none;
+			padding: 0;
+			li a
+			{
+				font-size: 2.8rem;
+				text-decoration: none;
+				color: $navItemColor;
+				text-transform: uppercase;
+				@include common_font;
+				&:hover, &:link, &:active
+				{
+					color: $hoverColor;
+					transition : $transition;
+				}
+			}
+		}
+	}
+	.navActive
+	{
+	    left: 0% !important;
+	}
+}
+
+@media (max-width: 900px){ 
+	.navbar
+	{
+		flex-direction: column !important;
+		gap : 4rem !important;
+		justify-content: flex-start !important;
+    	padding-top: 9rem !important;
+		ul
+		{
+			flex-direction: column !important;
+		}
+	}
+}

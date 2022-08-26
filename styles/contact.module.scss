@@ -1,0 +1,118 @@
+@use 'Materials/colors' as *;
+@use 'Materials/mixins' as *;
+
+.contact_section
+{
+	width: 100%;
+	min-height: 100vh;
+	padding: 7rem 4rem;
+	@include flex($dec : column);
+	justify-content: flex-start !important;
+	gap: 3.5rem;
+	.common_heading
+	{
+		font-size: 3.2rem;
+		// border: 1px solid blue;
+		@include common_font($font_weight : 700);
+		position: relative;
+		padding-bottom: 1rem;
+		&::before
+		{
+			content: '';
+			position: absolute;
+			bottom: 3%;
+			left: 4%;
+			width: 80%;
+			height: .3rem;
+			background: $hoverColor;
+			border-radius: .5rem;
+		}
+		&::after
+		{
+			content: '';
+			position: absolute;
+			bottom: -4%;
+			left: 0;
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			background: $hoverColor;
+		}
+	}
+
+	.container
+	{
+		width: 100%;
+		max-width: 70rem;
+		display: flex;
+		flex-direction: column;
+		gap : 2rem;
+		// margin-top: 4rem;
+	}
+
+	.two_col
+	{
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(2,1fr);
+		gap: 3rem;
+	}
+	.flex_col
+	{
+		@include flex($dec : column);
+		align-items: flex-start;
+		gap: .3rem;
+		position: relative;
+	}
+	.input
+	{
+		width: 100%;
+		padding: .8rem .5rem;
+		outline: none;
+		border-radius: .5rem;
+		border: 1px solid $navItemColor;
+		transition : $transition;
+		background: none;
+		&:focus
+		{
+			outline: 1px solid $hoverColor;
+			border-color: $hoverColor;
+			// border-width: 1px;
+		}
+	}
+
+	textarea.input
+	{
+		height: 15rem;
+	}
+	label
+	{
+		font-size: 1.8rem;
+		@include common_font;
+	}
+	.btn
+	{
+		border: none;
+		outline: none;
+		background: $hoverColor;
+		width: 50%;
+		padding: 1rem .8rem;
+		font-size: 2rem;
+		@include common_font;
+		color: #fff;
+		margin: auto;
+		&:hover 
+		{
+			box-shadow: 0px 5px 10px 0px rgba(0,0,0,.6);
+			transform: translateY(-.5rem);
+			transition: $transition;
+		}
+	}
+}
+
+@media (max-width: 650px){
+	.contact_section .two_col
+	{
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

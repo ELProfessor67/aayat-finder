@@ -1,0 +1,251 @@
+@use 'Materials/colors' as *;
+@use 'Materials/mixins' as *;
+
+
+.search_section
+{
+	width: 100%;
+	min-height: 100vh;
+	padding: 5rem;
+	@include flex($dec : column,$justify : flex-start);
+	gap: 1rem;
+
+	.common_heading
+	{
+		font-size: 3.2rem;
+		// border: 1px solid blue;
+		@include common_font($font_weight : 700);
+		position: relative;
+		padding-bottom: 1rem;
+		&::before
+		{
+			content: '';
+			position: absolute;
+			bottom: 3%;
+			left: 4%;
+			width: 80%;
+			height: .3rem;
+			background: $hoverColor;
+			border-radius: .5rem;
+		}
+		&::after
+		{
+			content: '';
+			position: absolute;
+			bottom: -4%;
+			left: 0;
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			background: $hoverColor;
+		}
+	}
+	.search
+	{
+		width: 50rem;
+		max-width: 50rem;
+		// border: 1px solid blue;
+		padding: .8rem;
+		border-radius: .5rem;
+		box-shadow: $shadow;
+		@include flex($justify : flex-start);
+		&:hover 
+		{
+			outline: 2px solid $hoverColor;
+		}
+		svg
+		{
+			width: 1.6rem;
+			height: 1.6rem;
+			path 
+			{
+				stroke : gray;
+			}
+		}
+		.search_input
+		{
+			border: none;
+			outline: none;
+			background: none;
+			padding-left: .5rem;
+			font-size: 1.4rem;
+			@include arbic_font;
+			font-weight: 200 !important;
+			width: 100%;
+			&::placeholder
+			{
+				@include common_font($font_weight: 400);
+				color : gray;
+				font-size: 1.5rem;
+			}
+		}
+		.reset_btn
+		{
+			display: grid;
+			place-items: center;
+			svg:hover path 
+			{
+				stroke: #000;
+			}
+		}
+	}
+
+	.Resultcontainer
+	{
+		@include flex($dec : column);
+		gap : 1.5rem;
+		width: 55rem;
+		position: relative;
+		padding: 2rem;
+		.resultBox
+		{
+			width: 100%;
+			@include flex($dec : column);
+			gap: 1rem;
+			box-shadow: $shadow;
+			border-radius: 1rem;
+			transition : $transition;
+			padding: 1rem 0;
+			// margin: 1rem;
+			&:hover 
+			{
+				transform : translateY(-1rem);
+			}
+
+			.aayat_details
+			{
+				font-size: 2.6rem;
+				@include common_font;
+				margin: 0;
+				color: $navItemColor;
+			}
+			.aayat_text
+			{
+				padding: 0 1rem;
+				text-align: center;
+				@include arbic_font;
+				font-size: 2rem;
+				color: $navItemColor;
+				.selected
+				{
+					color: red !important;
+				}
+			}
+		}
+
+		.loader_container
+		{
+			@include flex;
+			padding: 4rem;
+		}
+		.loader {
+			border: 16px solid #f3f3f3; /* Light grey */
+			border-top: 1.6rem solid $hoverColor;
+ 			border-bottom: 1.6rem solid $hoverColor;
+		    border-radius: 50%;
+			width: 8rem;
+			height: 8rem;
+			animation: spin 2s linear infinite;
+		}
+		.see_all
+		{
+			font-size: 2rem;
+			text-align: center;
+			@include common_font;
+			padding-top: 4rem;
+		}
+	}
+	.not_found
+	{
+		@include common_font;
+		font-size: 2rem;
+		text-align: center;
+	}
+	// .infinite-scroll-component
+	// {
+	// 	@include flex($dec : column);
+	// 	// gap : 2rem;
+	// 	width: 55rem;
+	// 	position: relative;
+	// }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 580
+@media (max-width: 580px){
+	.Resultcontainer
+	{
+		max-width: 50rem !important;
+	}
+}
+
+// 550px 
+@media (max-width: 550px){
+	.Resultcontainer
+	{
+		max-width: 45rem !important;
+	}
+	.search 
+	{
+		max-width: 40rem !important;
+	}
+}
+
+// 480px
+@media (max-width: 480px){
+	.Resultcontainer
+	{
+		max-width: 40rem !important;
+	}
+	.search 
+	{
+		max-width: 40rem !important;
+	}
+}
+
+// 480px
+@media (max-width: 420px){
+	.Resultcontainer
+	{
+		max-width: 35rem !important;
+	}
+	.search 
+	{
+		max-width: 30rem !important;
+	}
+}
+
+// 260px
+@media (max-width: 260px){
+	.Resultcontainer
+	{
+		max-width: 33rem !important;
+	}
+	.search 
+	{
+		max-width: 28rem !important;
+	}
+}
+
+@media (max-width: 240px){
+	.Resultcontainer
+	{
+		max-width: 30rem !important;
+	}
+	.search 
+	{
+		max-width: 25rem !important;
+	}
+	.aayat_details
+	{
+		text-align: center;
+	}
+	.resultBox
+	{
+		padding: 1rem !important;
+	}
+}

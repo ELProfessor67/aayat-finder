@@ -1,0 +1,59 @@
+@use 'Materials/colors' as *;
+@use 'Materials/mixins' as *;
+
+
+.about_section
+{
+	width: 100%;
+	min-height: 100vh;
+	padding: 9rem 4rem;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 3.5rem;
+	.common_heading
+	{
+		font-size: 3.2rem;
+		// border: 1px solid blue;
+		@include common_font($font_weight : 700);
+		position: relative;
+		padding-bottom: 1rem;
+		&::before
+		{
+			content: '';
+			position: absolute;
+			bottom: 3%;
+			left: 4%;
+			width: 80%;
+			height: .3rem;
+			background: $hoverColor;
+			border-radius: .5rem;
+		}
+		&::after
+		{
+			content: '';
+			position: absolute;
+			bottom: -4%;
+			left: 0;
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			background: $hoverColor;
+		}
+	}
+
+	p
+	{
+		font-size: 2rem;
+		line-height: 2.5rem;
+		max-width: 80rem;
+		opacity: .8;
+		@include common_font;
+
+		.high_light
+		{
+			color: $hoverColor;
+			cursor: pointer;
+		}
+	}
+}
