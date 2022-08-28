@@ -12,16 +12,47 @@ export default function Home({quran}){
   const [searchAayat, setSearchAayat] = useState([...quran]);
   const [search, setSeacrch] = useState('');
   const [count,setCount] = useState(5);
+  const [dir, setDir] = useState('rtl');
+  const [mark, setMark] = useState('');
 
-  const searchHandle = (e) => {
+  const checkEng = (text) => {
+    let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let isEng = false;
+    letters += letters.toLowerCase();
+
+    text.split('').forEach((alpha) => {
+      if(letters.includes(alpha)){
+        isEng = true;
+      }
+    });
+    return isEng;
+  }
+
+  const searchHandle = async (e) => {
     setSeacrch(e.target.value);
+    setMark(e.target.value);
+    
     // check in spaces only 
     if(e.target.value === ' ' || e.target.value === '  ' || e.target.value === '   '){
       setSearchAayat([]);
       return
     }
 
-    let text = stripDiacritics(e.target.value);
+    let text = e.target.value;
+
+    if(checkEng(text)){
+      setDir('ltr');
+      const url = `https://api.mymemory.translated.net/get?q=${text}&langpair=en|ar`;
+      let res = await fetch(url);
+      res = await res.json();
+      // console.log(text);
+      text = res.responseData.translatedText;
+      setMark(text);
+    }else{
+      setDir('rtl');
+    }
+
+    text = stripDiacritics(text);
     let filterAayat = quran.filter(Aayat => {
       let AayatText = Aayat.split("|")[2];
       AayatText = stripDiacritics(AayatText);
@@ -47,9 +78,11 @@ export default function Home({quran}){
         <section className={style.search_section}>
           <h1 className={style.common_heading}>Search Aayat</h1>
           <div className={style.search}>
-            {search && <span className={style.reset_btn}><GrClose onClick={() => setSeacrch('')}/></span>}
-            <input type="text" dir="rtl" className={style.search_input} value={search} onChange={searchHandle} placeholder='Search aayat'/>
-            <GrSearch/>
+            {dir=='ltr' && <GrSearch/>}
+            {search && dir== 'rtl' ? <span className={style.reset_btn}><GrClose onClick={() => setSeacrch('')}/></span> : ''}
+            <input type="text" className={style.search_input} dir={dir} value={search} onChange={searchHandle} placeholder='Search aayat'/>
+            {search && dir== 'ltr' ? <span className={style.reset_btn}><GrClose onClick={() => setSeacrch('')}/></span> : ''}
+            {dir=='rtl' && <GrSearch/>}
           </div>
           {/*<div className={style.Resultcontainer}>
             {search && searchAayat.length !== 0 ? searchAayat.map((aayatData,index) => {
@@ -99,7 +132,7 @@ export default function Home({quran}){
             >
             {search && searchAayat.length !== 0 ? searchAayat.slice(0,count).map((aayatData,index) => {
                 let [Surah, ayatNumber,ayatText] = aayatData.split('|');
-                let Marksearch = stripDiacritics(search);
+                let Marksearch = stripDiacritics(mark);
                 ayatText = stripDiacritics(ayatText);
                 ayatText = ayatText.replace(Marksearch,`<span class='selected'>${Marksearch}</span>`);
                 return(
