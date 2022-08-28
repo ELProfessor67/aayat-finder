@@ -47,9 +47,9 @@ export default function Home({quran}){
         <section className={style.search_section}>
           <h1 className={style.common_heading}>Search Aayat</h1>
           <div className={style.search}>
-            <GrSearch/>
-            <input type="text" dir="rtl" className={style.search_input} value={search} onChange={searchHandle} placeholder='Search aayat'/>
             {search && <span className={style.reset_btn}><GrClose onClick={() => setSeacrch('')}/></span>}
+            <input type="text" dir="rtl" className={style.search_input} value={search} onChange={searchHandle} placeholder='Search aayat'/>
+            <GrSearch/>
           </div>
           {/*<div className={style.Resultcontainer}>
             {search && searchAayat.length !== 0 ? searchAayat.map((aayatData,index) => {
